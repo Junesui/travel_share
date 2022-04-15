@@ -63,54 +63,50 @@ class _TabsState extends State<Tabs> {
 
   /// 底部导航栏
   _buildBottomNavigationBar() {
-    return Container(
-      decoration: const BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            width: 0.1,
-            color: Colors.grey,
-          ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Divider(height: 0),
+        BottomNavigationBar(
+          currentIndex: _currentIndex,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: StyleConstant.primaryColor,
+          selectedFontSize: SU.setFontSize(26),
+          unselectedFontSize: SU.setFontSize(26),
+          iconSize: SU.setFontSize(60),
+          elevation: 0,
+          onTap: (index) {
+            _pageController.jumpToPage(index);
+          },
+          items: [
+            _buildBottomItem(
+              MaterialCommunityIcons.home_lightbulb_outline,
+              MaterialCommunityIcons.home_lightbulb,
+              "首页",
+            ),
+            _buildBottomItem(
+              MaterialIcons.workspaces_outline,
+              MaterialIcons.workspaces_filled,
+              "结伴",
+            ),
+            _buildBottomItem(
+              Ionicons.chatbubble_ellipses_outline,
+              Ionicons.chatbubble_ellipses,
+              "消息",
+            ),
+            _buildBottomItem(
+              Ionicons.notifications_outline,
+              Ionicons.notifications,
+              "通知",
+            ),
+            _buildBottomItem(
+              Ionicons.ios_person_outline,
+              Ionicons.ios_person,
+              "我的",
+            ),
+          ],
         ),
-      ),
-      child: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: StyleConstant.primaryColor,
-        selectedFontSize: SU.setFontSize(26),
-        unselectedFontSize: SU.setFontSize(26),
-        iconSize: SU.setFontSize(60),
-        elevation: 0,
-        onTap: (index) {
-          _pageController.jumpToPage(index);
-        },
-        items: [
-          _buildBottomItem(
-            MaterialCommunityIcons.home_lightbulb_outline,
-            MaterialCommunityIcons.home_lightbulb,
-            "首页",
-          ),
-          _buildBottomItem(
-            MaterialIcons.workspaces_outline,
-            MaterialIcons.workspaces_filled,
-            "结伴",
-          ),
-          _buildBottomItem(
-            Ionicons.chatbubble_ellipses_outline,
-            Ionicons.chatbubble_ellipses,
-            "发布",
-          ),
-          _buildBottomItem(
-            Ionicons.notifications_outline,
-            Ionicons.notifications,
-            "消息",
-          ),
-          _buildBottomItem(
-            Ionicons.ios_person_outline,
-            Ionicons.ios_person,
-            "我的",
-          ),
-        ],
-      ),
+      ],
     );
   }
 
